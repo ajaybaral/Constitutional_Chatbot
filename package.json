@@ -1,0 +1,20 @@
+{
+  "name": "constitution-chatbot",
+  "version": "1.0.0",
+  "description": "A chatbot for the Indian Constitution using vector embeddings",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "process-constitution": "node scripts/process_constitution.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.0.3",
+    "dotenv": "^16.0.3",
+    "openai": "^4.28.0",
+    "pdf-parse": "^1.1.1",
+    "chromadb": "^1.5.5",
+    "cors": "^2.8.5",
+    "axios": "^1.6.2"
+  }
+}
