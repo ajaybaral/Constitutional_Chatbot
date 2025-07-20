@@ -58,6 +58,7 @@ if (!fs.existsSync(uploadsDir)) {
 app.use('/api/chat', require('./routes/chatRoutes'));
 app.use('/api/constitution', require('./routes/constitutionRoutes'));
 app.use('/api/document', require('./routes/documentRoutes'));
+app.use('/api/auth', require('./routes/authRoutes'));
 
 // Health check endpoint
 app.get('/health', (req, res) => {

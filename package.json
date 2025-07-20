@@ -8,13 +8,14 @@
     "process-constitution": "node scripts/process_constitution.js"
   },
   "dependencies": {
+    "axios": "^1.6.2",
+    "chromadb": "^1.5.5",
+    "constitution-chatbot": "file:",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "mongoose": "^7.0.3",
-    "dotenv": "^16.0.3",
     "openai": "^4.28.0",
-    "pdf-parse": "^1.1.1",
-    "chromadb": "^1.5.5",
-    "cors": "^2.8.5",
-    "axios": "^1.6.2"
+    "pdf-parse": "^1.1.1"
   }
 }
