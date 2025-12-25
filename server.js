@@ -48,11 +48,8 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/constitut
 })
 .catch(err => console.log('MongoDB Connection Error:', err));
 
-// Create uploads directory if it doesn't exist
-const uploadsDir = path.join(__dirname, 'uploads');
-if (!fs.existsSync(uploadsDir)) {
-  fs.mkdirSync(uploadsDir);
-}
+// Note: Vercel serverless functions have read-only filesystem
+// If file uploads are needed, use /tmp directory or external storage (AWS S3, Vercel Blob, etc.)
 
 // Routes
 app.use('/api/chat', require('./routes/chatRoutes'));
