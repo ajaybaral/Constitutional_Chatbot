@@ -47,6 +47,7 @@ function classifyQuery(message) {
       message_lower.includes('what language model') ||
       message_lower.includes('what llm') ||
       message_lower.includes('what technology') ||
+      message_lower.includes('Give Brief Description How You Work') ||
       message_lower.includes('what system')) {
     return 'chatbot_info';
   }
@@ -77,9 +78,14 @@ function classifyQuery(message) {
 // Create a new chat
 router.post('/chats', async (req, res) => {
   try {
-    const { userId, title } = req.body;
+    const { userId, title, folderId } = req.body;
     if (!userId) return res.status(400).json({ error: 'userId required' });
-    const chat = new Chat({ userId, title: title || 'New Chat', messages: [] });
+    const chat = new Chat({ 
+      userId, 
+      title: title || 'New Chat', 
+      folderId: folderId || null,
+      messages: [] 
+    });
     await chat.save();
     res.json({ chat });
   } catch (error) {
@@ -90,9 +96,17 @@ router.post('/chats', async (req, res) => {
 // List all chats for a user
 router.get('/chats', async (req, res) => {
   try {
-    const { userId } = req.query;
+    const { userId, folderId } = req.query;
     if (!userId) return res.status(400).json({ error: 'userId required' });
-    const chats = await Chat.find({ userId }).sort({ updatedAt: -1 });
+    
+    let query = { userId };
+    if (folderId !== undefined) {
+      // If folderId is 'null', look for chats with null folderId
+      // If provided, look for that specific folder
+      query.folderId = folderId === 'null' ? null : folderId;
+    }
+    
+    const chats = await Chat.find(query).sort({ isPinned: -1, updatedAt: -1 });
     res.json({ chats });
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -214,6 +228,46 @@ router.delete('/chats/:chatId', async (req, res) => {
     const chat = await Chat.findByIdAndDelete(chatId);
     if (!chat) return res.status(404).json({ error: 'Chat not found' });
     res.json({ success: true });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Move a chat to a folder
+router.put('/chats/:chatId/move', async (req, res) => {
+  try {
+    const { chatId } = req.params;
+    const { folderId } = req.body; // Can be null to remove from folder
+    
+    // Validate folderId if provided
+    
+    const chat = await Chat.findByIdAndUpdate(
+      chatId,
+      { $set: { folderId } },
+      { new: true }
+    );
+    
+    if (!chat) return res.status(404).json({ error: 'Chat not found' });
+    res.json({ chat });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Toggle pinned status
+router.put('/chats/:chatId/pin', async (req, res) => {
+  try {
+    const { chatId } = req.params;
+    const { isPinned } = req.body;
+    
+    const chat = await Chat.findByIdAndUpdate(
+      chatId,
+      { $set: { isPinned } },
+      { new: true }
+    );
+    
+    if (!chat) return res.status(404).json({ error: 'Chat not found' });
+    res.json({ chat });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

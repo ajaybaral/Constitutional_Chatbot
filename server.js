@@ -56,6 +56,7 @@ if (!fs.existsSync(uploadsDir)) {
 
 // Routes
 app.use('/api/chat', require('./routes/chatRoutes'));
+app.use('/api/folders', require('./routes/folderRoutes'));
 app.use('/api/constitution', require('./routes/constitutionRoutes'));
 app.use('/api/document', require('./routes/documentRoutes'));
 app.use('/api/auth', require('./routes/authRoutes'));

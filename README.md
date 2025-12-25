@@ -1,259 +1,259 @@
-# Constitutional AI Chatbot
+# Constitutional AI Chatbot 🏛️✨
 
-A modern, intelligent chatbot for Indian Constitutional queries with Google Authentication and beautiful UI.
+> Your friendly, intelligent companion for exploring the Indian Constitution
 
-## Features
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![React](https://img.shields.io/badge/React-18.2.0-61DAFB?logo=react)](https://reactjs.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-16+-339933?logo=node.js)](https://nodejs.org/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-Database-47A248?logo=mongodb)](https://www.mongodb.com/)
 
-- 🤖 **AI-Powered Responses**: Uses Mistral-7B-Instruct model for intelligent responses
-- 🔐 **Google Authentication**: Secure login with Google OAuth
-- 📚 **Constitutional Knowledge**: Comprehensive database of Indian Constitution articles
-- 💬 **Modern Chat Interface**: Beautiful, responsive chat UI with animations
-- 📱 **Mobile Responsive**: Works perfectly on all devices
-- 🎨 **Beautiful Design**: Modern UI with Material-UI components
-- 📊 **Markdown Support**: Rich text formatting in responses
-- 🔍 **Smart Search**: MongoDB text search for relevant articles
+---
 
-## Tech Stack
+## 🎨 Beautiful, Human-Friendly Design
 
-### Frontend
-- React 18
-- Material-UI (MUI)
-- Framer Motion (animations)
-- React Markdown
-- Firebase Authentication
-- Axios
+![Login Page](./screenshots/login.png)
+*Playful login page with hand-drawn doodles and friendly animations*
 
-### Backend
-- Node.js
-- Express.js
-- MongoDB
-- Mongoose
-- OpenRouter API
+![Chat Interface](./screenshots/chat.png)
+*Modern chat interface with organized sidebar and intelligent responses*
 
-## Setup Instructions
+---
+
+## ✨ Features
+
+### 🤖 **Intelligent AI Responses**
+- Powered by **Mistral-7B-Instruct** via OpenRouter API
+- Context-aware answers with constitutional article citations
+- Markdown formatting with code highlighting
+
+### 🎨 **Modern, Playful UI**
+- Hand-drawn doodles and organic shapes
+- Smooth animations with Framer Motion
+- Friendly emojis and warm color palette
+- ChatGPT-like sidebar with chat organization
+
+### 🔐 **Secure Authentication**
+- Google OAuth via Firebase
+- User profile management
+- Session persistence
+
+### 📁 **Smart Organization**
+- Multiple chat conversations
+- Folder support for grouping chats
+- Pin important conversations
+- Search and filter functionality
+
+### 📚 **Constitutional Knowledge Base**
+- Comprehensive Indian Constitution database
+- Text search with MongoDB
+- Article citations and references
+
+---
+
+## 🚀 Quick Start
 
 ### Prerequisites
-- Node.js (v16 or higher)
+- Node.js (v16+)
 - MongoDB
-- Google OAuth credentials
+- Google OAuth credentials (Firebase)
+- OpenRouter API key
 
-### 1. Clone the Repository
+### Installation
+
+1. **Clone the repository**
 ```bash
 git clone <repository-url>
 cd constitutional-chatbot
 ```
 
-### 2. Install Dependencies
-
-#### Backend Dependencies
+2. **Install backend dependencies**
 ```bash
 npm install
 ```
 
-#### Frontend Dependencies
+3. **Install frontend dependencies**
 ```bash
 cd client
 npm install
 ```
 
-### 3. Environment Variables
+4. **Configure environment variables**
 
-Create a `.env` file in the root directory:
-
+Create `.env` in root directory:
 ```env
-# MongoDB Connection
 MONGODB_URI=mongodb://localhost:27017/constitutional-chatbot
-
-# OpenRouter API Key
 OPENROUTER_API_KEY=your_openrouter_api_key_here
-
-# Optional: Constitution Data Source
 CONSTITUTION_DRIVE_URL=your_google_drive_url_here
 ```
 
-Create a `.env` file in the client directory:
-
+Create `.env` in `client` directory:
 ```env
-# Firebase Configuration
-REACT_APP_FIREBASE_API_KEY=AIzaSyBJ__EY3-WNZCC1ZGwKXFq5vwMvcr7t2rw
-REACT_APP_FIREBASE_AUTH_DOMAIN=chatbot-61524.firebaseapp.com
-REACT_APP_FIREBASE_PROJECT_ID=chatbot-61524
-REACT_APP_FIREBASE_STORAGE_BUCKET=chatbot-61524.firebasestorage.app
-REACT_APP_FIREBASE_MESSAGING_SENDER_ID=731277517175
-REACT_APP_FIREBASE_APP_ID=1:731277517175:web:924d8ca46acb4029f94172
-REACT_APP_FIREBASE_MEASUREMENT_ID=G-YTK2QWF2TE
+REACT_APP_FIREBASE_API_KEY=your_firebase_api_key
+REACT_APP_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
+REACT_APP_FIREBASE_PROJECT_ID=your_project_id
+REACT_APP_FIREBASE_STORAGE_BUCKET=your_project.firebasestorage.app
+REACT_APP_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+REACT_APP_FIREBASE_APP_ID=your_app_id
+REACT_APP_FIREBASE_MEASUREMENT_ID=your_measurement_id
 ```
 
-### 4. Firebase Setup
+5. **Start the application**
 
-The application is already configured with Firebase Authentication. The Firebase configuration is included in the codebase and will work out of the box.
-
-If you want to use your own Firebase project:
-
-1. Go to [Firebase Console](https://console.firebase.google.com/)
-2. Create a new project or select existing one
-3. Enable Authentication → Sign-in method → Google
-4. Add your web app to the project
-5. Copy the configuration and update the environment variables
-
-### 6. Start the Application
-
-#### Start Backend Server
+Backend server:
 ```bash
-# From root directory
 npm start
 ```
 
-#### Start Frontend Development Server
+Frontend (in separate terminal):
 ```bash
-# From client directory
 cd client
 npm start
 ```
 
-The application will be available at:
-- Frontend: http://localhost:3000
-- Backend: http://localhost:5000
+Access at: **http://localhost:3000**
 
-## API Endpoints
+---
 
-### Authentication
-- `POST /api/auth/google` - Firebase authentication
-- `GET /api/auth/profile/:userId` - Get user profile
-- `PUT /api/auth/profile/:userId` - Update user profile
-- `POST /api/auth/logout/:userId` - Logout user
+## 🛠️ Tech Stack
 
-### Chat
-- `POST /api/chat` - Send chat message
-- `GET /api/chat/history/:userId` - Get chat history
+### Frontend
+- **React 18** - UI framework
+- **Material-UI** - Component library
+- **Framer Motion** - Smooth animations
+- **Lucide React** - Modern icons
+- **React Markdown** - Markdown rendering
+- **Firebase Auth** - Authentication
 
-### Constitution
-- `GET /api/constitution/search` - Search constitution articles
-- `GET /api/constitution/article/:id` - Get specific article
+### Backend
+- **Node.js** - Runtime environment
+- **Express.js** - Web framework
+- **MongoDB** - Database
+- **Mongoose** - ODM
+- **OpenRouter API** - AI model integration
 
-## Features in Detail
+---
 
-### 🔐 Authentication
-- Secure Firebase Authentication integration
-- User profile management
-- Session persistence
-- Automatic user creation
-
-### 💬 Chat Interface
-- Real-time message display
-- Typing indicators
-- Message timestamps
-- Rich text formatting
-- Code syntax highlighting
-- Responsive design
-
-### 🤖 AI Responses
-- Context-aware responses
-- Constitutional article citations
-- Structured formatting
-- Markdown support
-- Error handling
-
-### 📱 Responsive Design
-- Mobile-first approach
-- Touch-friendly interface
-- Adaptive layouts
-- Smooth animations
-
-## Project Structure
+## 📂 Project Structure
 
 ```
 constitutional-chatbot/
 ├── client/                 # React frontend
-│   ├── public/
 │   ├── src/
-│   │   ├── App.js         # Main application component
-│   │   ├── index.js       # Entry point
+│   │   ├── components/    # React components
+│   │   │   ├── LoginPage.jsx
+│   │   │   ├── Sidebar.jsx
+│   │   │   └── ChatArea.jsx
+│   │   ├── App.js         # Main app component
+│   │   ├── firebase.js    # Firebase config
 │   │   └── index.css      # Global styles
 │   └── package.json
 ├── models/                 # MongoDB models
-│   ├── Constitution.js     # Constitution article model
-│   └── User.js            # User model
+│   ├── Chat.js
+│   ├── Folder.js
+│   ├── Constitution.js
+│   └── User.js
 ├── routes/                 # API routes
-│   ├── authRoutes.js      # Authentication routes
-│   ├── chatRoutes.js      # Chat routes
-│   ├── constitutionRoutes.js
-│   └── documentRoutes.js
+│   ├── authRoutes.js
+│   ├── chatRoutes.js
+│   ├── folderRoutes.js
+│   └── constitutionRoutes.js
 ├── data/                   # Constitution data
-│   └── indian_constitution.json
-├── scripts/                # Utility scripts
-│   └── importConstitution.js
+├── screenshots/            # App screenshots
 ├── server.js              # Express server
 └── package.json
 ```
 
-## Customization
+---
 
-### Styling
-- Modify `client/src/index.css` for global styles
-- Update theme in `client/src/App.js`
-- Customize Material-UI theme
+## 🎯 Key Capabilities
 
-### AI Model
-- Change model in `routes/chatRoutes.js`
-- Adjust temperature and max_tokens
-- Modify system prompts
+### Chat Management
+- Create multiple chat conversations
+- Rename and delete chats
+- Pin important discussions
+- Search through chat history
 
-### Database
-- Add new fields to models
-- Create new collections
-- Implement data validation
+### Folder Organization
+- Create folders to organize chats
+- Move chats between folders
+- Color-code folders
 
-## Troubleshooting
-
-### Common Issues
-
-1. **Firebase Authentication not working**
-   - Check Firebase configuration in firebase.js
-   - Verify Firebase project settings
-   - Ensure Google sign-in is enabled in Firebase Console
-
-2. **MongoDB connection failed**
-   - Check MongoDB is running
-   - Verify connection string
-   - Check network connectivity
-
-3. **OpenRouter API errors**
-   - Verify API key
-   - Check rate limits
-   - Ensure proper headers
-
-4. **Frontend not loading**
-   - Check all dependencies installed
-   - Verify port 3000 is available
-   - Check console for errors
-
-### Development Tips
-
-- Use browser dev tools for debugging
-- Check server logs for backend issues
-- Test API endpoints with Postman
-- Monitor MongoDB connections
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
-
-## License
-
-This project is licensed under the MIT License.
-
-## Support
-
-For support and questions:
-- Create an issue on GitHub
-- Check the troubleshooting section
-- Review the documentation
+### AI Features
+- Ask questions about Indian Constitution
+- Get detailed explanations with article references
+- Structured responses with bullet points
+- Code syntax highlighting for examples
 
 ---
 
-**Note**: Remember to replace placeholder values (like `YOUR_GOOGLE_CLIENT_ID`) with your actual credentials before running the application. 
+## 🔧 API Endpoints
+
+### Authentication
+- `POST /api/auth/google` - Google authentication
+- `GET /api/auth/profile/:userId` - Get user profile
+- `POST /api/auth/logout/:userId` - Logout
+
+### Chat
+- `POST /api/chat/chats` - Create new chat
+- `GET /api/chat/chats` - List all chats
+- `GET /api/chat/chats/:chatId` - Get specific chat
+- `POST /api/chat/chats/:chatId/message` - Send message
+- `PUT /api/chat/chats/:chatId` - Rename chat
+- `DELETE /api/chat/chats/:chatId` - Delete chat
+- `PUT /api/chat/chats/:chatId/pin` - Toggle pin status
+
+### Folders
+- `POST /api/folders` - Create folder
+- `GET /api/folders` - List folders
+- `PUT /api/folders/:folderId` - Update folder
+- `DELETE /api/folders/:folderId` - Delete folder
+
+---
+
+## 🎨 Design Philosophy
+
+This chatbot embraces a **human-centered design** approach:
+
+✨ **Playful & Friendly** - Hand-drawn doodles, sparkles, and warm colors  
+💝 **Approachable** - Comic Sans font and friendly copy  
+🎭 **Organic** - Flowing shapes and smooth animations  
+📚 **Educational** - Clear, structured responses with emojis  
+
+The goal is to make constitutional knowledge accessible and enjoyable!
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+---
+
+## 📝 License
+
+This project is licensed under the MIT License.
+
+---
+
+## 🙏 Acknowledgments
+
+- **Mistral AI** for the Mistral-7B-Instruct model
+- **OpenRouter** for API access
+- **Firebase** for authentication services
+- **MongoDB** for database solutions
+
+---
+
+## 📧 Support
+
+For questions or issues, please create an issue in the GitHub repository.
+
+---
+
+**Made with ❤️ for understanding the Indian Constitution**

@@ -8,7 +8,10 @@ const messageSchema = new mongoose.Schema({
 
 const chatSchema = new mongoose.Schema({
   userId: { type: String, required: true, index: true },
+  folderId: { type: mongoose.Schema.Types.ObjectId, ref: 'Folder', default: null },
   title: { type: String, default: 'New Chat' },
+  isPinned: { type: Boolean, default: false },
+  tags: [String],
   messages: [messageSchema],
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now }
