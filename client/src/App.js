@@ -127,6 +127,7 @@ function App() {
       });
       setChats([res.data.chat, ...chats]);
       setSelectedChatId(res.data.chat._id);
+      showSnackbar('New chat created! ✨', 'success');
     } catch (err) {
       showSnackbar('Failed to create chat', 'error');
     }
@@ -157,14 +158,91 @@ function App() {
     }
   };
 
-  const handleCreateFolder = async (name) => {
+  // Chat Management
+  const handleRenameChat = async (chatId, newTitle) => {
     try {
-      await axios.post('http://localhost:5000/api/folders', {
-        userId: user.uid, name
+      await axios.put(`http://localhost:5000/api/chat/chats/${chatId}`, { title: newTitle });
+      setChats(chats.map(c => c._id === chatId ? { ...c, title: newTitle } : c));
+      showSnackbar('Chat renamed! ✏️', 'success');
+    } catch (err) {
+      showSnackbar('Failed to rename chat', 'error');
+    }
+  };
+
+  const handleDeleteChat = async (chatId) => {
+    try {
+      await axios.delete(`http://localhost:5000/api/chat/chats/${chatId}`);
+      setChats(chats.filter(c => c._id !== chatId));
+      if (selectedChatId === chatId) setSelectedChatId(null);
+      showSnackbar('Chat deleted! 🗑️', 'success');
+    } catch (err) {
+      showSnackbar('Failed to delete chat', 'error');
+    }
+  };
+
+  const handleMoveChat = async (chatId, folderId) => {
+    try {
+      await axios.put(`http://localhost:5000/api/chat/chats/${chatId}/move`, { folderId });
+      setChats(chats.map(c => c._id === chatId ? { ...c, folderId } : c));
+      showSnackbar(`Chat moved! 📂`, 'success');
+    } catch (err) {
+      showSnackbar('Failed to move chat', 'error');
+    }
+  };
+
+  const handlePinChat = async (chatId) => {
+    try {
+      await axios.put(`http://localhost:5000/api/chat/chats/${chatId}/pin`);
+      const updatedChat = chats.find(c => c._id === chatId);
+      setChats(chats.map(c => c._id === chatId ? { ...c, isPinned: !c.isPinned } : c));
+      showSnackbar(`Chat ${updatedChat.isPinned ? 'unpinned' : 'pinned'}! 📌`, 'success');
+    } catch (err) {
+      showSnackbar('Failed to pin/unpin chat', 'error');
+    }
+  };
+
+  // Folder Management
+  const handleCreateFolder = async (name, color) => {
+    try {
+      const res = await axios.post('http://localhost:5000/api/folders', {
+        userId: user.uid, name, color
       });
-      fetchFolders(user.uid);
+      setFolders([...folders, res.data.folder]);
+      showSnackbar('Folder created! 📁', 'success');
     } catch(err) {
       showSnackbar('Failed to create folder', 'error');
+    }
+  };
+
+  const handleRenameFolder = async (folderId, newName) => {
+    try {
+      await axios.put(`http://localhost:5000/api/folders/${folderId}`, { name: newName });
+      setFolders(folders.map(f => f._id === folderId ? { ...f, name: newName } : f));
+      showSnackbar('Folder renamed! ✏️', 'success');
+    } catch (err) {
+      showSnackbar('Failed to rename folder', 'error');
+    }
+  };
+
+  const handleDeleteFolder = async (folderId) => {
+    try {
+      await axios.delete(`http://localhost:5000/api/folders/${folderId}`);
+      setFolders(folders.filter(f => f._id !== folderId));
+      // Move chats to unorganized
+      setChats(chats.map(c => c.folderId === folderId ? { ...c, folderId: null } : c));
+      showSnackbar('Folder deleted! 🗑️', 'success');
+    } catch (err) {
+      showSnackbar('Failed to delete folder', 'error');
+    }
+  };
+
+  const handleUpdateFolderColor = async (folderId, color) => {
+    try {
+      await axios.put(`http://localhost:5000/api/folders/${folderId}`, { color });
+      setFolders(folders.map(f => f._id === folderId ? { ...f, color } : f));
+      showSnackbar('Folder color updated! 🎨', 'success');
+    } catch (err) {
+      showSnackbar('Failed to update folder color', 'error');
     }
   };
 
@@ -205,6 +283,13 @@ function App() {
           onSelectChat={setSelectedChatId}
           onLogout={handleLogout}
           onCreateFolder={handleCreateFolder}
+          onRenameChat={handleRenameChat}
+          onDeleteChat={handleDeleteChat}
+          onMoveChat={handleMoveChat}
+          onPinChat={handlePinChat}
+          onRenameFolder={handleRenameFolder}
+          onDeleteFolder={handleDeleteFolder}
+          onUpdateFolderColor={handleUpdateFolderColor}
         />
         <ChatArea 
           chat={activeChat}
