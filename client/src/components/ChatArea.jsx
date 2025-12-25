@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { Box, Typography, IconButton, Avatar, Paper } from '@mui/material';
 import { Send, MoreVertical, Bot, User } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';

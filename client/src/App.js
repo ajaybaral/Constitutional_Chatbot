@@ -35,7 +35,6 @@ function App() {
   // UI State
   const [loading, setLoading] = useState(false); // AI generating response
   const [message, setMessage] = useState(''); // Current input
-  const [sidebarOpen, setSidebarOpen] = useState(true);
   const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: 'info' });
 
   // Init Data
@@ -61,6 +60,7 @@ function App() {
       setAuthLoading(false);
     });
     return () => unsubscribe();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Fetching Data
@@ -100,6 +100,7 @@ function App() {
   useEffect(() => {
     if (selectedChatId) fetchMessages(selectedChatId);
     else setMessages([]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedChatId]);
 
   // Actions

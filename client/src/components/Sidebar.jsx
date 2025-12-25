@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { 
-  Box, Typography, List, ListItem, IconButton, TextField, 
-  Collapse, Tooltip, Avatar, Menu, MenuItem, Button
+  Box, Typography, List, ListItem,
+  Collapse, Avatar, Menu, MenuItem, Button
 } from '@mui/material';
 import { 
-  Plus, MessageSquare, Folder as FolderIcon, MoreVertical, 
-  Search, ChevronDown, ChevronRight, Pin, Trash2, LogOut,
-  Settings
+  Plus, MessageSquare, Folder as FolderIcon,
+  Search, ChevronDown, ChevronRight, Pin, LogOut
 } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 const Sidebar = ({ 
   user, chats, folders, activeChatId, onNewChat, 
